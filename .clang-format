@@ -5,8 +5,13 @@ BreakBeforeBraces: Allman
 AllowShortIfStatementsOnASingleLine: false
 ColumnLimit: 120
 
-# Compatible tweaks for multiline brace-init formatting
 Cpp11BracedListStyle: false
 AlignAfterOpenBracket: Align
 AllowAllConstructorInitializersOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
+
+ContinuationIndentWidth: 4
+BinPackArguments: false
+BinPackParameters: false
+AllowShortLambdasOnASingleLine: All
+PenaltyBreakBeforeFirstCallParameter: 1

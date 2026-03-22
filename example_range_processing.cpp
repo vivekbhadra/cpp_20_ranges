@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ranges>
 #include <vector>
 
 int main()
@@ -9,23 +10,14 @@ int main()
     // if the calibrated values are within a range then
     // print the processed data
     std::vector<int> sensor_readings = { -15, 10, 0, 21, -13, 45, 60, -18, 19 };
-    std::vector<int> processed;
-    processed.reserve(sensor_readings.size());
-    for (auto r : sensor_readings)
-    {
-        if (r > 0)
-        {
-            int calibrated = r * 2;
-            if (calibrated >= 20 && calibrated <= 100)
-            {
-                processed.push_back(calibrated);
-            }
-        }
-    }
 
-    for (auto t : processed)
+    auto processed_view = 
+    sensor_readings | std::views::filter([](int reading) { return reading > 0; }) 
+                    | std::views::transform([](int reading) { return reading * 2; }) 
+                    | std::views::filter([](int calibrated) { return calibrated >= 20 && calibrated <= 100; });
+    for (auto p : processed_view)
     {
-        std::cout << t << ' ';
+        std::cout << p << ' ';
     }
     std::cout << '\n';
 
