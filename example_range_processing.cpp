@@ -14,7 +14,8 @@ int main()
     auto processed_view = 
     sensor_readings | std::views::filter([](int reading) { return reading > 0; }) 
                     | std::views::transform([](int reading) { return reading * 2; }) 
-                    | std::views::filter([](int calibrated) { return calibrated >= 20 && calibrated <= 100; });
+                    | std::views::filter([](int calibrated) { return calibrated >= 20 && calibrated <= 100; })
+                    |std::views::transform([](int calibrated){return calibrated / 2;});
     for (auto p : processed_view)
     {
         std::cout << p << ' ';
